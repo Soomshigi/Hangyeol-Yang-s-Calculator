@@ -23,4 +23,32 @@ def square(x):
     return x**2
 def power(x,y):
     return x**y
-pi = math.pi
+def factorial(x,shift):
+    return math.factorial(x)
+def sine(x,shift):
+    if shift:
+        return math.asin(x)
+    else:
+        return math.sin(x)
+def cos(x,shift):
+    if shift:
+        return math.acos(x)
+    else:
+        return math.cos(x)
+def tan(x,shift):
+    if shift:
+        return math.atan(x)
+    else:
+        return math.tan(x)
+def log(x,y,shift):
+    if shift:
+        return math.log(x,y)
+    else:
+        return math.log(x,10)
+def constant(shift):
+    if shift:
+        return math.e
+    else:
+        return math.pi
+shift = False
+print(log(100,10,shift))
