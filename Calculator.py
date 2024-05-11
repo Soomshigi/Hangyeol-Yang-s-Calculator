@@ -17,14 +17,21 @@ def divide(x,y):
         return x / y
     else:
         return 'Error! Division by zero is not allowed.'
-def sqrt(x):
-    return math.sqrt(x)
-def square(x):
-    return x**2
-def power(x,y):
-    return x**y
-def factorial(x,shift):
-    return math.factorial(x)
+def sqrt(x,shift):
+    if shift:
+        return math.cbrt(x)
+    else:
+        return math.sqrt(x)
+def power(x,shift):
+    if shift:
+        return x**3
+    else:
+        return x**2
+def factorial(x,y,shift):
+    if shift:
+        return x**y
+    else:
+        return math.factorial(x)
 def sine(x,shift):
     if shift:
         return math.asin(x)
