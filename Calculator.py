@@ -17,4 +17,10 @@ def divide(x,y)
         return x / y
     else:
         return 'Error! Division by zero is not allowed.'
+def sqrt(x):
+    return math.sqrt(x)
+def square(x):
+    return x**2
+def power(x,y):
+    return x**y
 pi = math.pi
