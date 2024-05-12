@@ -106,24 +106,74 @@ def cub_equ(a, b, c, d):
     return np.roots(coef)
 
 def calc(calculate):
-    while True:
-        for i in range(len(calculate)):
+    i = 0
+    n = 0
+    while n < len(calculate):
+        while i < len(calculate):
+        # for i in range(len(calculate)):
             if calculate[i] == '(':
                 calculate2 = []
-                for j in range(i, len(calculate)):
-                    if calculate[j] == ')':
-                        calculate.insert(0, calc(calculate2))
-                        del calculate[i+1:j+2]
-                        break
+                for j in range(i+1, len(calculate)):
                     calculate2.append(calculate[j])
-            if calculate[i] == ')':
-                break
-            elif calculate[i] == '*':
-                calculate.insert(0, multi(calculate[i - 1], calculate[i + 1]))
-                del calculate[i:i + 3]
-                break
-        return calculate[0]
+                    if calculate[j] == ')':
+                        del calculate2[-1]
+                        calculate.insert(i, calc(calculate2))
+                        del calculate[i+1:j+2]
+                        i = 0
+                        break
+            i += 1
+        i = 0
+        # while i < len(calculate):
+        #     print(calculate)
+        #     print(i)
+        # # for i in range(len(calculate)):
+        #     if calculate[i] == '*':
+        #         calculate.insert(i-1, multi(calculate[i - 1], calculate[i + 1]))
+        #         del calculate[i:i + 3]
+        #         i = 0
+        #         n = 0
+        #         break
+        #     i += 1
+        while i < len(calculate):
+            print(calculate)
+            print(i)
+            # for i in range(len(calculate)):
+            if calculate[i] == '/' or calculate[i] == '*':
+                if calculate[i] == '/':
+                    calculate.insert(i - 1, divide(calculate[i - 1], calculate[i + 1]))
+                    del calculate[i:i + 3]
+                    i = 0
+                    n = 0
+                    continue
+                elif calculate[i] == '*':
+                    calculate.insert(i - 1, multi(calculate[i - 1], calculate[i + 1]))
+                    del calculate[i:i + 3]
+                    i = 0
+                    n = 0
+                    continue
+            i += 1
+        i = 0
+        while i < len(calculate):
+            print(calculate)
+            print(i)
+            # for i in range(len(calculate)):
+            if calculate[i] == '+' or calculate[i] == '-':
+                if calculate[i] == '+':
+                    calculate.insert(i - 1, add(calculate[i - 1], calculate[i + 1]))
+                    del calculate[i:i + 3]
+                    i = 0
+                    n = 0
+                    continue
+                elif calculate[i] == '-':
+                    calculate.insert(i - 1, sub(calculate[i - 1], calculate[i + 1]))
+                    del calculate[i:i + 3]
+                    i = 0
+                    n = 0
+                    continue
+            i += 1
+        n += 1
+        print("break")
+    return calculate[0]
 
-
-calculate = ['(', 9, '*', 4, ')', '*', 20, '*', '(', 3, '*', 5, ')', '*', 7]
+calculate = [2 , '-', '(', 9, '*', 4, ')', '+', 20, '/', '(', 3, '-', 5, ')', '*', 7]
 print(calc(calculate))
