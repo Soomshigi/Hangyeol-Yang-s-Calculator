@@ -6,4 +6,4 @@ ICS4U-SA Project
 - Shift feature
 - Function for calculation
 - Working on BODMAS
-1. Finishing a Scientific calculator with Tkinter. (Before 2024-05-12)
+2. Finishing a Scientific calculator with Tkinter. (Before 2024-05-12)
