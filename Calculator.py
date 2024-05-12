@@ -7,7 +7,7 @@ import numpy as np
 # window.resizable(0,0)
 # window.title("CALCULATOR")
 # window.mainloop()
-shift = True
+shift = False
 
 def add(x,y):
     return x+y
@@ -245,5 +245,5 @@ def calc(calculate):
     return calculate[0]
 pi = math.pi
 e = math.e
-calculate = ['3√', 8, '-', '!', 4, '+', 20, '/', 'log', 2, 4, '*', 'acos', -1]
-print(calc(calculate))
+calculate = ['sin', '(', 1, '/', 2, '*', pi,')']
+print(round(calc(calculate),5))
