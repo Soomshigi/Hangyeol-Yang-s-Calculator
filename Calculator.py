@@ -32,21 +32,23 @@ def sqrt(x):
     else:
         return math.sqrt(x)
 
-def power(x):
-    global shift
-    if shift:
-        shift = False
-        return x**3
-    else:
-        return x**2
+def power(x,y):
+    return x ** y
+    # global shift
+    # if shift:
+    #     shift = False
+    #     return x**3
+    # else:
+    #     return x**2
 
-def factorial(x,y):
-    global shift
-    if shift:
-        shift = False
-        return x**y
-    else:
-        return math.factorial(x)
+def factorial(x):
+    return math.factorial(x)
+    # global shift
+    # if shift:
+    #     shift = False
+    #     return x**y
+    # else:
+    #     return math.factorial(x)
 
 def sine(x) :
     global shift
@@ -72,13 +74,14 @@ def tan(x):
     else:
         return math.tan(x)
 
-def log(x,y):
-    global shift
-    if shift:
-        shift = False
-        return math.log(x,y)
-    else:
-        return math.log(x,10)
+def log(x,base):
+    return math.log(x, base)
+    # global shift
+    # if shift:
+    #     shift = False
+    #     return math.log(x,y)
+    # else:
+    #     return math.log(x,10)
 
 def constant():
     global shift
@@ -108,6 +111,7 @@ def cub_equ(a, b, c, d):
 def calc(calculate):
     i = 0
     n = 0
+    global shift
     while n < len(calculate):
         while i < len(calculate):
         # for i in range(len(calculate)):
@@ -123,17 +127,82 @@ def calc(calculate):
                         break
             i += 1
         i = 0
-        # while i < len(calculate):
-        #     print(calculate)
-        #     print(i)
-        # # for i in range(len(calculate)):
-        #     if calculate[i] == '*':
-        #         calculate.insert(i-1, multi(calculate[i - 1], calculate[i + 1]))
-        #         del calculate[i:i + 3]
-        #         i = 0
-        #         n = 0
-        #         break
-        #     i += 1
+        while i < len(calculate):
+            print(calculate)
+            print(i)
+            if calculate[i] == '√' or calculate[i] == '3√' or calculate[i] == '**' or calculate[i] == 'sin' or calculate[i] == 'cos' or calculate[i] == 'tan' or calculate[i] == 'asin' or calculate[i] == 'acos' or calculate[i] == 'atan' or calculate[i] == 'log' or calculate[i] == '!':
+                if calculate[i] == '√':
+                    calculate.insert(i, sqrt(calculate[i + 1]))
+                    del calculate[i+1:i + 3]
+                    i = 0
+                    n = 0
+                    continue
+                elif calculate[i] == '3√':
+                    shift = True
+                    calculate.insert(i, sqrt(calculate[i + 1]))
+                    del calculate[i+1:i + 3]
+                    i = 0
+                    n = 0
+                    continue
+                elif calculate[i] == '**':
+                    calculate.insert(i - 1, power(calculate[i - 1],calculate[i + 1]))
+                    del calculate[i:i + 3]
+                    i = 0
+                    n = 0
+                    continue
+                elif calculate[i] == 'sin':
+                    calculate.insert(i, sine(calculate[i + 1]))
+                    del calculate[i+1:i + 3]
+                    i = 0
+                    n = 0
+                    continue
+                elif calculate[i] == 'cos':
+                    calculate.insert(i, cos(calculate[i + 1]))
+                    del calculate[i+1:i + 3]
+                    i = 0
+                    n = 0
+                    continue
+                elif calculate[i] == 'tan':
+                    calculate.insert(i, tan(calculate[i + 1]))
+                    del calculate[i+1:i + 3]
+                    i = 0
+                    n = 0
+                    continue
+                elif calculate[i] == 'asin':
+                    shift = True
+                    calculate.insert(i, sine(calculate[i + 1]))
+                    del calculate[i+1:i + 3]
+                    i = 0
+                    n = 0
+                    continue
+                elif calculate[i] == 'acos':
+                    shift = True
+                    calculate.insert(i, cos(calculate[i + 1]))
+                    del calculate[i+1:i + 3]
+                    i = 0
+                    n = 0
+                    continue
+                elif calculate[i] == 'atan':
+                    shift = True
+                    calculate.insert(i, tan(calculate[i + 1]))
+                    del calculate[i+1:i + 3]
+                    i = 0
+                    n = 0
+                    continue
+                elif calculate[i] == 'log':
+                    calculate.insert(i, log(calculate[i + 2], calculate[i + 1]))
+                    del calculate[i+1:i + 4]
+                    i = 0
+                    n = 0
+                    continue
+                elif calculate[i] == '!':
+                    calculate.insert(i, factorial(calculate[i + 1]))
+                    del calculate[i+1:i + 3]
+                    i = 0
+                    n = 0
+                    continue
+            i += 1
+        i = 0
         while i < len(calculate):
             print(calculate)
             print(i)
@@ -174,6 +243,7 @@ def calc(calculate):
         n += 1
         print("break")
     return calculate[0]
-
-calculate = [2 , '-', '(', 9, '*', 4, ')', '+', 20, '/', '(', 3, '-', 5, ')', '*', 7]
+pi = math.pi
+e = math.e
+calculate = ['3√', 8, '-', '!', 4, '+', 20, '/', 'log', 2, 4, '*', 'acos', -1]
 print(calc(calculate))
